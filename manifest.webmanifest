@@ -2,7 +2,7 @@
     "short_name": "랏바홀",
     "name": "랏바홀 레이드",
     "start_url": "/LatBaHol/",
-    "scope": "/",
+    "scope": "/LatBaHol/",
     "display": "standalone",
     "orientation": "portrait",
     "theme_color": "#33343C",

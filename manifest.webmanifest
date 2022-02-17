@@ -1,6 +1,16 @@
 {
     "short_name": "랏바홀",
     "name": "랏바홀 레이드",
+    "start_url": "./",
+    "display": "standalone",
+    "orientation": "portrait",
+    "theme_color": "#33343C",
+    "background_color": "#33343C",
+    "splashScreen": {
+        "backgroundColor": "#33343C",
+        "name": "랏바홀 레이드",
+        "icons": "/resource/icon/android-icon-192x192.png"
+    },
     "icons": [
         {
          "src": "/resource/icon/android-icon-36x36.png",
@@ -38,15 +48,5 @@
          "type": "image/png",
          "density": "4.0"
         }
-       ],
-    "start_url": "./index.html",
-    "display": "standalone",
-    "orientation": "portrait",
-    "theme_color": "#33343C",
-    "background_color": "#33343C",
-    "splashScreen": {
-        "backgroundColor": "#33343C",
-        "name": "랏바홀 레이드",
-        "icons": "/resource/icon/android-icon-192x192.png"
-    }
+       ]
 }

@@ -1,6 +1,7 @@
 {
     "short_name": "랏바홀",
     "name": "랏바홀 레이드",
+    "discription": "랏바홀의 레이드 일정표",
     "start_url": "https://dneifiend.github.io/LatBaHol/",
     "scope": "https://dneifiend.github.io/LatBaHol/",
     "display": "standalone",
@@ -41,6 +42,11 @@
         {
             "src": "https://dneifiend.github.io/LatBaHol/resource/icon/android-icon-192x192.png",
             "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "https://dneifiend.github.io/LatBaHol/resource/icon/chrome-512x512.png",
+            "sizes": "512x512",
             "type": "image/png"
         }
     ]

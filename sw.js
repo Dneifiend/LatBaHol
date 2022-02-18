@@ -1,3 +1,5 @@
+const CACHE_NAME = 'sw-cache-v1';
+
 self.addEventListener('install', function(e) {
     console.log('[Service Worker] Install');
 });
@@ -12,11 +14,11 @@ self.addEventListener('fetch', function(e) {
                 return response;
             }
             console.log('[ServiceWorker] Retrieving from URL...');
-            return fetch(e.request).catch(function (e) {
-               //you might want to do more error checking here too,
-               //eg, check what e is returning..
-               alert('You appear to be offline, please try again when back online');
-            });
+            return fetch(e.request).catch(()=>
+            caches
+                .open(CACHE_NAME)
+                .then(cache=>cache.match("/offline.html"))
+            )
         })
     );
 });

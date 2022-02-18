@@ -1,7 +1,8 @@
 {
     "short_name": "랏바홀",
     "name": "랏바홀 레이드",
-    "discription": "랏바홀의 레이드 일정표",
+    "lang": "ko-KR",
+    "description": "랏바홀의 레이드 일정표",
     "start_url": "https://dneifiend.github.io/LatBaHol/",
     "scope": "https://dneifiend.github.io/LatBaHol/",
     "display": "standalone",

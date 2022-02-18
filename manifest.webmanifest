@@ -7,7 +7,7 @@
     "scope": "https://dneifiend.github.io/LatBaHol/",
     "display": "standalone",
     "orientation": "portrait",
-    "theme_color": "#33343C",
+    "theme_color": "#005E57",
     "background_color": "#33343C",
     "splashScreen": {
         "backgroundColor": "#33343C",

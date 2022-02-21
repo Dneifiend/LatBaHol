@@ -1,12 +1,13 @@
 var data = {
     datasets: [{
+        label: "완료율",
         data: [3, 10],
         backgroundColor: [
-            "#045d56",
-            "#535353"
+            "#1EB980",
+            "#045d56"
         ],
         borderWidth: 0,
-        cutout: "80%"
+        cutout: "85%"
         
     }]
 }

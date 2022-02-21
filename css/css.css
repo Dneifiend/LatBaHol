@@ -1,4 +1,93 @@
+html {
+    font-size: 14.5px;
+    color: white;
+}
 body{
-    padding: 0;
     margin: 0;
+    background-color:#424250;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    
+}
+
+
+
+
+main {
+    padding: 1rem;
+}
+
+
+.justify-content-center {
+    justify-content: center;
+}
+
+
+.text-color-highlight{
+    color: #1EB980;
+}
+
+.raind-list-info .text-color-highlight{
+    margin-right: 0.5rem;
+}
+
+
+.raid-list{
+    padding: 1rem;
+    margin: 1rem 0.1rem;
+    background-color:#363840;
+    flex-direction: row;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.raind-list-info {
+    display: flex;
+    align-items: flex-end;
+}
+
+.bg-dark-1 {
+    background-color:#424250;
+}
+
+.text-white-2{
+    color: rgb(151, 151, 151) !important;
+}
+
+
+.raid-time {
+    margin-left: 0.2rem;
+    font-size: 0.9rem;
+}
+
+.list-me {
+    border-left: 0.5rem solid #1EB980;
+}
+.list-me-not {
+    border-left: 0.5rem solid #045D56;
+}
+
+.raid-list {
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    align-items: center;
+    
+}
+
+.raid-name{
+    font-size: 1.5rem;
+    font-weight: bold;
+    
+}
+
+
+
+.p1 {
+    padding: 0.5rem;
+}
+.p2 {
+    padding: 0.7rem;
 }

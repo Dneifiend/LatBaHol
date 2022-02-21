@@ -1,4 +1,4 @@
-.mdc-components {
+/* .mdc-components {
   box-sizing: border-box;
   display: flex;
   font-family: Roboto;
@@ -586,7 +586,7 @@
 
   .mdc-component__toolbar .mdc-icon-toggle::before,
   .mdc-component__toolbar .mdc-icon-toggle::after {
-    background-color: rgba(255, 255, 255, 0.06);
+    background-color: rgba(255, 255, 255, 0.06) !important;
   }
 
   .mdc-component__toolbar .mdc-fab.mdc--theme-primary.mdc-ripple-upgraded::after {
@@ -596,4 +596,4 @@
   .mdc-component__toolbar .mdc-fab.mdc--theme-secondary.mdc-ripple-upgraded::after {
     background-color: rgba(255, 255, 255, 0.16);
   }
-  
+   */

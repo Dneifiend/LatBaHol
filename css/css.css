@@ -71,6 +71,9 @@ main {
 .text-white-2{
     color: rgb(151, 151, 151);
 }
+.text-white-2-i{
+    color: rgb(151, 151, 151) !important;
+}
 
 
 .raid-time {

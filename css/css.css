@@ -11,7 +11,7 @@ body{
 
 
 main {
-    padding: 1rem 0;
+    padding: 1rem 0.5rem;
 }
 
 .mdc-top-app-bar {
@@ -59,7 +59,7 @@ main {
 }
 
 .text-white-2{
-    color: rgb(151, 151, 151) !important;
+    color: rgb(151, 151, 151);
 }
 
 
@@ -76,8 +76,13 @@ main {
     border-left: 0.5rem solid #045D56;
 }
 .raid-list.complete {
-    border-left: 0.5rem solid rgb(151, 151, 151);
+    border-left: 0.5rem solid #535353;
+    
 }
+.raid-list.complete * {
+    color: #696969;
+}
+
 
 
 #progress-bar {

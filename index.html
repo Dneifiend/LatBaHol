@@ -21,6 +21,10 @@
   <meta name="theme-color" content="#33343C">
   <link rel="favicon" href="https://dneifiend.github.io/LatBaHol/favicon.ico">
   <link rel="shortcut icon" href="https://dneifiend.github.io/LatBaHol/favicon.ico">
+
+
+  <!-- chart js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
   
   <title>랏바홀 레이드</title>
@@ -71,6 +75,22 @@
         <section id="progress-bar-highlight"></section>
     </div>
 
+    <section class="raid-info-container">
+      <div id="raid-not-complete-count">
+        <span>잔여 레이드</span>
+        <span class="big">7</span>
+      </div>
+      <div id="raid-complete-count">
+        <span>완료 레이드</span>
+        <span class="big">12</span>
+      </div>
+      <div id="raid-progress">
+        <!-- <span>완료율</span> -->
+        <canvas id="myChart" width="70" height="70"></canvas>
+        
+      </div>
+    </section>
+
 
     <div class="mdc-card raid-list list-me">
       <div>
@@ -95,12 +115,12 @@
       </div>
     </div>
 
-    <div class="mdc-card raid-list list-me-not">
+    <div class="mdc-card raid-list list-me">
       <div>
         <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목밤 22시)</span>
       </div>
       <div class="raind-list-info">
-        <span class="text-color-highlight m2-s-e"></span>
+        <span class="text-color-highlight m2-s-e">도카롱</span>
         <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">people</i><span class="text-white-2">×7</span>
         <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">navigate_next</i>
       </div>
@@ -128,12 +148,24 @@
       </div>
     </div>
 
-
+    <div class="mdc-card raid-list list-me-not complete">
+      <div>
+        <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목밤 22시)</span>
+      </div>
+      <div class="raind-list-info">
+        <span class="text-color-highlight m2-s-e"></span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">people</i><span class="text-white-2">×7</span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">navigate_next</i>
+      </div>
+    </div>
 
 
   </main>
 
 
+
+
+<script src="render.js"></script>
 
 <script>
 

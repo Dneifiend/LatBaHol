@@ -147,3 +147,18 @@ main {
 .p2 {
     padding: 0.7rem;
 }
+
+
+
+.raid-info-container {
+    display: flex;
+    justify-content: space-around;
+}
+.raid-info-container > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.raid-info-container > div span.big {
+    font-size: 3rem;
+}

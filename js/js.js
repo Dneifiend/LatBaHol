@@ -26,3 +26,8 @@ for (var i = 0, li; li = interactiveListItems[i]; i++) {
     evt.preventDefault();
   });
 }
+
+
+var progress = {
+  
+}

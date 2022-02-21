@@ -4,16 +4,15 @@ html {
 }
 body{
     margin: 0;
-    background-color:#424250;
+    background-color:#33333D;
     font-family: 'IBM Plex Sans KR', sans-serif;
     
 }
 
 
 
-
 main {
-    padding: 1rem;
+    padding: 1rem 0;
 }
 
 
@@ -33,8 +32,8 @@ main {
 
 .raid-list{
     padding: 1rem;
-    margin: 1rem 0.1rem;
-    background-color:#363840;
+    margin: 0.2rem 0rem;
+    background-color:#373740;
     flex-direction: row;
     box-sizing: border-box;
     align-items: center;
@@ -47,8 +46,13 @@ main {
     align-items: flex-end;
 }
 
+.mdc-card{
+    box-shadow: none;
+    border-radius: 0;
+}
+
 .bg-dark-1 {
-    background-color:#424250;
+    background-color:#33333D;
 }
 
 .text-white-2{
@@ -61,11 +65,15 @@ main {
     font-size: 0.9rem;
 }
 
+
 .list-me {
     border-left: 0.5rem solid #1EB980;
 }
 .list-me-not {
     border-left: 0.5rem solid #045D56;
+}
+.raid-list.complete {
+    border-left: 0.5rem solid rgb(151, 151, 151);
 }
 
 .raid-list {
@@ -76,6 +84,8 @@ main {
     align-items: center;
     
 }
+
+
 
 .raid-name{
     font-size: 1.25rem;

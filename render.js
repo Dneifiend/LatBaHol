@@ -1,20 +1,31 @@
 var data = {
+    
+    labels:["완료","미완료"],
     datasets: [{
-        label: "완료율",
-        data: [3, 10],
+        
+        data: [12, 7],
         backgroundColor: [
             "#1EB980",
             "#045d56"
         ],
         borderWidth: 0,
-        cutout: "85%"
-        
+        cutout: "85%",
+        tooltip:false
     }]
+
 }
 
 var config = {
     type: 'doughnut',
-    data: data
+    data: data,
+    options: {
+        plugins: {
+            legend: {
+                display: false
+            }
+        }
+    }
+
 };
 
 var myChart = new Chart(

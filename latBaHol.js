@@ -27,3 +27,6 @@ let progressBar = {
         this._si.forEach(si => { clearInterval(si) })
     }
 }
+
+// progressBar.init()
+// progressBar.on()

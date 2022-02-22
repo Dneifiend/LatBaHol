@@ -1,11 +1,21 @@
+:root {
+    --dark: #33333D;
+}
 html {
     font-size: 14.5px;
     color: white;
 }
+
+
 body{
     margin: 0;
-    background-color:#33333D;
+    background-color:var(--dark);
     font-family: 'IBM Plex Sans KR', sans-serif;
+    
+    overflow-x: hidden;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
 }
 
 html > *  {
@@ -19,13 +29,22 @@ html > *  {
   }
 
 
-
 main {
-    padding: 1rem 0.5rem;
+    background-color: var(--dark);
+    
+    padding-top: 0.5rem !important;
+    overflow-y: auto;
+    width: 100vw;
+    height: calc(100vh - 190px);
+
+    /* overflow-x: hidden; */
 }
 
 .mdc-top-app-bar {
     width: 100vw;
+    position: sticky;
+    top:0;
+
 }
 
 
@@ -65,7 +84,7 @@ main {
 }
 
 .bg-dark-1 {
-    background-color:#33333D;
+    background-color:var(--dark);
 }
 
 .text-white-2{
@@ -100,7 +119,11 @@ main {
 
 #progress-bar {
     height: 2px;
-    width: 100%;
+    width: 100vw;
+    background-color: var(--dark);
+    position: sticky;
+    top: 56px;
+    z-index: 999;
 }
 
 #progress-bar.on {
@@ -116,14 +139,15 @@ main {
     height: 2px;
     width: 40%;
     margin-left: -40%;
-    position: fixed;
-    /* display: none; */
+    
 }
 #progress-bar-highlight.s{
     margin-left: 100%;
 }
 
 .raid-list {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
     padding: 1rem;
     display: flex;
     flex-direction: row;
@@ -153,6 +177,15 @@ main {
 .raid-info-container {
     display: flex;
     justify-content: space-around;
+    padding: 1rem 0rem;
+    
+
+    position:sticky;
+    position:-webkit-sticky;
+    top: 58px;
+    z-index: 999;
+    background: var(--dark);
+    
 }
 .raid-info-container > div {
     display: flex;
@@ -161,4 +194,19 @@ main {
 }
 .raid-info-container > div span.big {
     font-size: 3rem;
+}
+.text-medium {
+    font-size: 2rem;
+}
+
+.raid-progress-subtitle {
+    position: absolute;
+    margin-top: 0.9rem;
+    
+}
+
+.raid-progress-value {
+    position: absolute;
+    margin-top: 1.2rem;
+    
 }

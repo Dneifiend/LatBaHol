@@ -2,7 +2,7 @@
 <html lang="ko-KR">
 
 <head>
-  <base href="https://dneifiend.github.io/LatBaHol/">
+  <!-- <base href="https://dneifiend.github.io/LatBaHol/"> -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,8 +43,6 @@
   
   <link rel="stylesheet" href="css/css.css">
   <script src="main.js"></script>
-  <script src="latBaHol.js"></script>
-
 </head>
 
 <body>
@@ -63,38 +61,40 @@
       </section>
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
         <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button text-white-2-i"
-          aria-label="filter_alt" style="rgb(151, 151, 151) !important;">filter_alt</button>
+          aria-label="filter_alt" style="color:rgb(151, 151, 151) !important;">filter_alt</button>
       </section>
     </div>
   </header>
   
   
-  <main class="mdc-top-app-bar--fixed-adjust">
+  <div id="progress-bar">
+      <section id="progress-bar-highlight"></section>
+  </div>
 
-    <div id="progress-bar">
-        <section id="progress-bar-highlight"></section>
+  <!-- 메인 레이드 정보 -->
+  <section class="raid-info-container">
+    <div id="raid-not-complete-count">
+      <span>잔여 레이드</span>
+      <span class="big">7</span>
     </div>
+    <div id="raid-complete-count">
+      <span>완료 레이드</span>
+      <span class="big">12</span>
+    </div>
+    <div id="raid-progress" >
+      <canvas id="myChart" width="75" height="75"></canvas>
+      <!-- <span class="raid-progress-subtitle">완료율</span> -->
+      <span class="raid-progress-value text-medium">63<i class="material-icons" style="font-size: 1rem;">percent</i></span>
+    </div>
+  </section>
 
-    <section class="raid-info-container">
-      <div id="raid-not-complete-count">
-        <span>잔여 레이드</span>
-        <span class="big">7</span>
-      </div>
-      <div id="raid-complete-count">
-        <span>완료 레이드</span>
-        <span class="big">12</span>
-      </div>
-      <div id="raid-progress">
-        <!-- <span>완료율</span> -->
-        <canvas id="myChart" width="70" height="70"></canvas>
-        
-      </div>
-    </section>
+
+  <main class="mdc-top-app-bar--fixed-adjust">
 
 
     <div class="mdc-card raid-list list-me">
       <div>
-        <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목밤 22시)</span>
+        <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목 22)</span>
       </div>
       <div class="raind-list-info">
         <span class="text-color-highlight m2-s-e">LiereaG</span>
@@ -106,7 +106,7 @@
 
     <div class="mdc-card raid-list list-me-not">
       <div>
-        <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목밤 22시)</span>
+        <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목 22)</span>
       </div>
       <div class="raind-list-info">
         <span class="text-color-highlight m2-s-e"></span>
@@ -117,7 +117,7 @@
 
     <div class="mdc-card raid-list list-me">
       <div>
-        <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목밤 22시)</span>
+        <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목 22)</span>
       </div>
       <div class="raind-list-info">
         <span class="text-color-highlight m2-s-e">도카롱</span>
@@ -128,7 +128,7 @@
 
     <div class="mdc-card raid-list list-me-not complete">
       <div>
-        <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목밤 22시)</span>
+        <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목 22)</span>
       </div>
       <div class="raind-list-info">
         <span class="text-color-highlight m2-s-e"></span>
@@ -139,7 +139,7 @@
 
     <div class="mdc-card raid-list list-me-not complete">
       <div>
-        <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목밤 22시)</span>
+        <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목 22)</span>
       </div>
       <div class="raind-list-info">
         <span class="text-color-highlight m2-s-e"></span>
@@ -150,7 +150,137 @@
 
     <div class="mdc-card raid-list list-me-not complete">
       <div>
-        <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목밤 22시)</span>
+        <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목 22)</span>
+      </div>
+      <div class="raind-list-info">
+        <span class="text-color-highlight m2-s-e"></span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">people</i><span class="text-white-2">×7</span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">navigate_next</i>
+      </div>
+    </div>
+    <div class="mdc-card raid-list list-me-not complete">
+      <div>
+        <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목 22)</span>
+      </div>
+      <div class="raind-list-info">
+        <span class="text-color-highlight m2-s-e"></span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">people</i><span class="text-white-2">×7</span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">navigate_next</i>
+      </div>
+    </div>
+    <div class="mdc-card raid-list list-me-not complete">
+      <div>
+        <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목 22)</span>
+      </div>
+      <div class="raind-list-info">
+        <span class="text-color-highlight m2-s-e"></span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">people</i><span class="text-white-2">×7</span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">navigate_next</i>
+      </div>
+    </div>
+    <div class="mdc-card raid-list list-me-not complete">
+      <div>
+        <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목 22)</span>
+      </div>
+      <div class="raind-list-info">
+        <span class="text-color-highlight m2-s-e"></span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">people</i><span class="text-white-2">×7</span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">navigate_next</i>
+      </div>
+    </div>
+    <div class="mdc-card raid-list list-me-not complete">
+      <div>
+        <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목 22)</span>
+      </div>
+      <div class="raind-list-info">
+        <span class="text-color-highlight m2-s-e"></span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">people</i><span class="text-white-2">×7</span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">navigate_next</i>
+      </div>
+    </div>
+    <div class="mdc-card raid-list list-me-not complete">
+      <div>
+        <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목 22)</span>
+      </div>
+      <div class="raind-list-info">
+        <span class="text-color-highlight m2-s-e"></span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">people</i><span class="text-white-2">×7</span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">navigate_next</i>
+      </div>
+    </div>
+    <div class="mdc-card raid-list list-me-not complete">
+      <div>
+        <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목 22)</span>
+      </div>
+      <div class="raind-list-info">
+        <span class="text-color-highlight m2-s-e"></span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">people</i><span class="text-white-2">×7</span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">navigate_next</i>
+      </div>
+    </div>
+    <div class="mdc-card raid-list list-me-not complete">
+      <div>
+        <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목 22)</span>
+      </div>
+      <div class="raind-list-info">
+        <span class="text-color-highlight m2-s-e"></span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">people</i><span class="text-white-2">×7</span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">navigate_next</i>
+      </div>
+    </div>
+    <div class="mdc-card raid-list list-me-not complete">
+      <div>
+        <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목 22)</span>
+      </div>
+      <div class="raind-list-info">
+        <span class="text-color-highlight m2-s-e"></span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">people</i><span class="text-white-2">×7</span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">navigate_next</i>
+      </div>
+    </div>
+    <div class="mdc-card raid-list list-me-not complete">
+      <div>
+        <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목 22)</span>
+      </div>
+      <div class="raind-list-info">
+        <span class="text-color-highlight m2-s-e"></span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">people</i><span class="text-white-2">×7</span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">navigate_next</i>
+      </div>
+    </div>
+    <div class="mdc-card raid-list list-me-not complete">
+      <div>
+        <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목 22)</span>
+      </div>
+      <div class="raind-list-info">
+        <span class="text-color-highlight m2-s-e"></span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">people</i><span class="text-white-2">×7</span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">navigate_next</i>
+      </div>
+    </div>
+    <div class="mdc-card raid-list list-me-not complete">
+      <div>
+        <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목 22)</span>
+      </div>
+      <div class="raind-list-info">
+        <span class="text-color-highlight m2-s-e"></span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">people</i><span class="text-white-2">×7</span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">navigate_next</i>
+      </div>
+    </div>
+    <div class="mdc-card raid-list list-me-not complete">
+      <div>
+        <span class="raid-name">비아 하드</span><span class="raid-time text-white-2">(목 22)</span>
+      </div>
+      <div class="raind-list-info">
+        <span class="text-color-highlight m2-s-e"></span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">people</i><span class="text-white-2">×7</span>
+        <i class="material-icons mdc-button__icon text-white-2" aria-hidden="true">navigate_next</i>
+      </div>
+    </div>
+    <div class="mdc-card raid-list list-me-not complete">
+      <div>
+        <span class="raid-name">비아마지막</span><span class="raid-time text-white-2">(목 22)</span>
       </div>
       <div class="raind-list-info">
         <span class="text-color-highlight m2-s-e"></span>
@@ -166,21 +296,6 @@
 
 
 <script src="render.js"></script>
-
-<script>
-
-//   var MDCRipple = mdc.ripple.MDCRipple
-//   var MDCTopAppBar = mdc.topAppBar.MDCTopAppBar
-
-//   const topAppBarElement = document.querySelector('.mdc-top-app-bar');
-// const topAppBar = new MDCTopAppBar(topAppBarElement);
-
-//   var selector = '.mdc-button, .mdc-icon-button, .mdc-card__primary-action .mdc-card';
-//   var ripples = [].map.call(document.querySelectorAll(selector), function(el) {
-//   return new MDCRipple(el);
-// });
-
-
-</script>
+<script src="latBaHol.js"></script>
 </body>
 </html>

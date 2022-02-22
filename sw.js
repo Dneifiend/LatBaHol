@@ -17,7 +17,7 @@ self.addEventListener('fetch', function(e) {
             return fetch(e.request).catch(()=>
             caches
                 .open(CACHE_NAME)
-                .then(cache=>cache.match("/offline.html"))
+                .then(cache=>cache.match("https://dneifiend.github.io/LatBaHol/offline.html"))
             )
         })
     );

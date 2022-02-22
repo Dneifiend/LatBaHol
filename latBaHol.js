@@ -28,5 +28,5 @@ let progressBar = {
     }
 }
 
-// progressBar.init()
-// progressBar.on()
+progressBar.init()
+progressBar.on()

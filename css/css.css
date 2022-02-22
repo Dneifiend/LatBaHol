@@ -1,5 +1,12 @@
 :root {
     --dark: #33333D;
+    --dark-2 : #2d2d2d;
+    --grey : #979797;
+    --dark-grey: #373740;
+    --primary-hightlight: #1EB980;
+    --secondary: #045d56;
+    --black: #1E1E1E;
+
 }
 html {
     font-size: 14.5px;
@@ -35,9 +42,16 @@ main {
     padding-top: 0.5rem !important;
     overflow-y: auto;
     width: 100vw;
-    height: calc(100vh - 190px);
+    height: calc(100vh - 180px);
+}
 
-    /* overflow-x: hidden; */
+#main-container {
+    transition: margin-left 0.75s ease-in-out;
+    margin-left: 0;
+}
+
+#main-container.right {
+    margin-left: -100vw;
 }
 
 .mdc-top-app-bar {
@@ -62,16 +76,7 @@ main {
 }
 
 
-.raid-list{
-    padding: 1rem;
-    margin: 0.2rem 0rem;
-    background-color:#373740;
-    flex-direction: row;
-    box-sizing: border-box;
-    align-items: center;
-    justify-content: space-between;
 
-}
 
 .raind-list-info {
     display: flex;
@@ -145,16 +150,20 @@ main {
     margin-left: 100%;
 }
 
-.raid-list {
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-    padding: 1rem;
-    display: flex;
+
+.raid-list{
+    padding: 1rem 1rem 1rem 0.25rem;
+    margin: 0.2rem 0rem;
+    background-color:var(--dark-grey);
     flex-direction: row;
     box-sizing: border-box;
     align-items: center;
-    
+    justify-content: space-between;
+    z-index: 999;
+
 }
+
+
 
 
 
@@ -178,7 +187,7 @@ main {
     display: flex;
     justify-content: space-around;
     padding: 1rem 0rem;
-    
+    width:100vw;
 
     position:sticky;
     position:-webkit-sticky;
@@ -192,9 +201,19 @@ main {
     flex-direction: column;
     align-items: center;
 }
-.raid-info-container > div span.big {
+.big {
     font-size: 3rem;
 }
+
+.raid-member-container .big {
+    font-size: 1.2rem;
+}
+
+.raid-name-container {
+    display: flex;
+    align-items: center;
+}
+
 .text-medium {
     font-size: 2rem;
 }
@@ -210,3 +229,105 @@ main {
     margin-top: 1.2rem;
     
 }
+
+.raid-member-container {
+    transition: opacity 0.5s ease-in-out,
+                height 0.5s ease-in-out,
+                margin-top 0.5s ease-in-out;
+
+    /* margin-bottom:273px; */
+    opacity: 0;
+    margin-top:-5rem;
+    height:70px;
+
+}
+
+.raid-member-container.unfold {
+    /* TODO javascript로 height 강제 지정해줘야 함 */
+    height:203px;
+    opacity: 1;
+    margin-top:0;
+}
+
+.raid-member-simple {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5rem;
+    width: calc(50% - 0.6rem);
+    margin: 0;
+    padding: 0.5rem 0.25rem;
+    background-color: var(--dark-2);
+}
+
+.raid-member-simple:not(:last-child){
+    border-bottom: 2px solid var(--black);
+}
+
+.raid-member-simple.me{
+    /* background-color: var(--black); */
+}
+
+.raid-member-simple .char-name{
+    color:var(--grey)
+}
+
+.raid-member-simple.me .user-name{
+    color:var(--primary-hightlight)
+}
+
+.raid-member-list {
+    transition:margin-top,opacity 0.5s ease-in-out;
+    display: inline-flex;
+    padding: 0.5rem;
+    /* margin-top: -0.25rem; */
+    margin-bottom: 0.25rem;
+    width: calc(100vw - 1.5rem);
+    height:auto;
+    
+    background-color: var(--black);
+    flex-wrap: wrap;
+    justify-content: space-between;
+    opacity: 1;
+    /* position:fixed; */
+}
+
+.raid-member-list.h {
+    margin-top: -10vh;
+    opacity: 0;
+}
+
+
+
+
+
+.badge {
+    border-radius: 2px;
+    padding: 0 0.5rem;
+    background-color: var(--black);
+}
+
+
+
+.badge.ilv{
+    background-color: var(--secondary);
+}
+.badge.job{
+    background-color: var(--black);
+}
+
+
+.badge.heal {
+    background-color: #FFB5DB;
+    color: #980000;
+}
+
+
+.char-name-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+

@@ -108,6 +108,6 @@ function wait(time) {
     })
 }
 
+
 progressBar.init()
 scrollEventHandler.init(250)
-

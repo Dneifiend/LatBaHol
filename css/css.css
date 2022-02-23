@@ -1,11 +1,15 @@
 :root {
-    --dark: #33333D;
+    /* --dark: #33333D; */
+    --dark: #1A1D21;
+    /* --dark-2 : #2d2d2d; */
     --dark-2 : #2d2d2d;
     --grey : #979797;
-    --dark-grey: #373740;
+    /* --dark-grey: #373740; */
+    --dark-grey: #1F2227;
+    --deep-dark-grey : #4f5655;
     --primary-hightlight: #1EB980;
     --secondary: #045d56;
-    --black: #1E1E1E;
+    --black: #101211;
 
 }
 html {
@@ -247,7 +251,7 @@ main {
 
 .raid-progress-value {
     position: absolute;
-    margin-top: 1.2rem;
+    margin-top: 1.5rem;
     
 }
 
@@ -265,7 +269,7 @@ main {
 
 .raid-member-container.unfold {
     /* TODO javascript로 height 강제 지정해줘야 함 */
-    height:203px;
+    height:210px;
     opacity: 1;
     margin-top:0;
 }
@@ -277,17 +281,20 @@ main {
     justify-content: center;
     margin-top: 0.5rem;
     width: calc(50% - 0.6rem);
-    margin: 0;
+    margin: 0.1rem 0;
     padding: 0.5rem 0.25rem;
-    background-color: var(--dark-2);
+    background-color: var(--dark-grey);
 }
 
 .raid-member-simple{
-    border-bottom: 3px solid var(--black);
+    /* border-bottom: 3px solid var(--black); */
+    box-shadow: inset 0 0.4rem 0px var(--deep-dark-grey);
 }
 
 .raid-member-simple.me{
-    /* background-color: var(--black); */
+    /* border-left: 2px solid var(--primary-hightlight); */
+    /* background: linear-gradient(120deg, rgba(13,82,58,1) 0%, rgba(25,51,46,1) 10%, rgba(31,34,39,1) 30%); */
+    box-shadow: inset 0 0.4rem 0px var(--secondary);
 }
 
 .raid-member-simple .char-name{
@@ -296,7 +303,7 @@ main {
 }
 
 .raid-member-simple.me .user-name{
-    color:var(--primary-hightlight);    
+    /* color:var(--primary-hightlight);     */
 }
 
 .raid-member-list {
@@ -308,7 +315,7 @@ main {
     width: calc(100vw - 2.5rem);
     height:auto;
     
-    background-color: var(--black);
+    /* background-color: var(--dark-grey); */
     flex-wrap: wrap;
     justify-content: space-between;
     opacity: 1;
@@ -354,3 +361,30 @@ main {
     justify-content: center;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* animation */
+/* TODO 리플 애니메이션 해야 함. background는 단계별로만 한 번에 되는 듯 */
+@keyframes Ripple {
+    0% {
+        background: linear-gradient(359deg, rgba(13,82,58,1) 0%, rgba(25,51,46,1) 10%, rgba(31,34,39,1) 30%);
+    }
+
+    50% {
+        background: linear-gradient(180deg, rgba(13,82,58,1) 0%, rgba(25,51,46,1) 10%, rgba(31,34,39,1) 30%);
+    }
+    100% {
+        background: linear-gradient(0deg, rgba(13,82,58,1) 0%, rgba(25,51,46,1) 10%, rgba(31,34,39,1) 30%);
+    }
+}

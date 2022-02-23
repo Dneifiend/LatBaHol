@@ -1,6 +1,4 @@
 var data = {
-    
-    labels:["완료","미완료"],
     datasets: [{
         
         data: [12, 7],
@@ -18,9 +16,15 @@ var data = {
 var config = {
     type: 'doughnut',
     data: data,
+
     options: {
-        plugins: {
-            legend: {
+        
+
+        plugins:{
+            tooltip: {
+                enabled: false
+            },
+            title: {
                 display: false
             }
         }

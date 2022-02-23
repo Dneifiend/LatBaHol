@@ -75,7 +75,7 @@ let scrollEventHandler = {
                     this.doingFlag = false
                     
                     this.que = null;
-                }, this.maxTime+1000)
+                }, this.maxTime+500)
 
                 if (!this.doingFlag) {
                     this.doingFlag = true

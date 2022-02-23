@@ -52,7 +52,7 @@ main {
 
 /* scroll */
 .scroll::-webkit-scrollbar {
-    width: 25px;
+    width: 30px;
 }
 
 .scroll::-webkit-scrollbar-thumb {

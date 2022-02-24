@@ -61,7 +61,7 @@ let scrollEventHandler = {
             scrollElement.addEventListener('scroll', e => {
                 clearTimeout(this.que)
                 this.que = setTimeout(() => {
-                    if(this.state === "down"){
+                    if (this.state === "down") {
 
                         wait(0)
                             .then(_ => this.handler(0.5))
@@ -73,9 +73,9 @@ let scrollEventHandler = {
                             .finally(_ => { this.state = "stand"; this.doingFlag = false; })
                     }
                     this.doingFlag = false
-                    
+
                     this.que = null;
-                }, this.maxTime+500)
+                }, this.maxTime + 500)
 
                 if (!this.doingFlag) {
                     this.doingFlag = true

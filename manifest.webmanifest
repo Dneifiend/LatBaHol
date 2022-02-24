@@ -7,10 +7,10 @@
     "scope": "https://dneifiend.github.io/LatBaHol/",
     "display": "standalone",
     "orientation": "portrait",
-    "theme_color": "#005E57",
-    "background_color": "#33343C",
+    "theme_color": "#1A1D21",
+    "background_color": "#1A1D21",
     "splashScreen": {
-        "backgroundColor": "#33343C",
+        "backgroundColor": "#1A1D21",
         "name": "랏바홀 레이드",
         "icons": "https://dneifiend.github.io/LatBaHol/resource/icon/android-icon-192x192.png"
     },

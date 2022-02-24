@@ -267,7 +267,7 @@ main {
 
 }
 
-.raid-member-container.unfold {
+.unfold .raid-member-container {
     /* TODO javascript로 height 강제 지정해줘야 함 */
     height:210px;
     opacity: 1;
@@ -284,12 +284,12 @@ main {
     margin: 0.1rem 0;
     padding: 0.5rem 0.25rem;
     background-color: var(--dark-grey);
+
+    box-shadow: inset 0 0.4rem 0px var(--deep-dark-grey);
+
+    
 }
 
-.raid-member-simple{
-    /* border-bottom: 3px solid var(--black); */
-    box-shadow: inset 0 0.4rem 0px var(--deep-dark-grey);
-}
 
 .raid-member-simple.me{
     /* border-left: 2px solid var(--primary-hightlight); */
@@ -367,24 +367,17 @@ main {
 
 
 
+/* pure ripple css */
+.ripple {
+    background-position: center;
+    transition: background 0.8s;
+}
+.ripple:hover {
+    background: var(--dark-grey) radial-gradient(circle, transparent 1%, var(--dark-grey) 1%) center / 15000%;
+}
 
-
-
-
-
-
-
-/* animation */
-/* TODO 리플 애니메이션 해야 함. background는 단계별로만 한 번에 되는 듯 */
-@keyframes Ripple {
-    0% {
-        background: linear-gradient(359deg, rgba(13,82,58,1) 0%, rgba(25,51,46,1) 10%, rgba(31,34,39,1) 30%);
-    }
-
-    50% {
-        background: linear-gradient(180deg, rgba(13,82,58,1) 0%, rgba(25,51,46,1) 10%, rgba(31,34,39,1) 30%);
-    }
-    100% {
-        background: linear-gradient(0deg, rgba(13,82,58,1) 0%, rgba(25,51,46,1) 10%, rgba(31,34,39,1) 30%);
-    }
+.ripple:active {
+    background-color: #2a2e35;
+    background-size: 1%;
+    transition: background 0s;
 }

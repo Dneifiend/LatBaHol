@@ -18,7 +18,7 @@ let settingHandler = {
 
         var MDCTextField = mdc.textField.MDCTextField;
         var textField = new MDCTextField(document.querySelector('.mdc-text-field'))
-        textField.value = localStorage.userName
+        textField.value = userName
         document.querySelector('#modal').style.visibility = 'visible'
     }, 
     submit: function(){
@@ -28,7 +28,8 @@ let settingHandler = {
 
         var MDCSnackbar = mdc.snackbar.MDCSnackbar
         var sn = new MDCSnackbar(document.querySelector('.mdc-snackbar'))
-        sn.labelText = `저장완료! 이제부터 우측 상단 캐릭터 아이콘을 클릭하여 '${userName}' 캐릭터만 필터가 가능합니다.`
+        sn.labelText = userName.length>0 ? `저장완료! 우상단 아이콘을 클릭하여 '${userName}' 캐릭터만 필터 가능`
+                                           : `유저 닉네임이 없습니다. 닉네임 입력 시 레이드목록에서 보유한 캐릭터 필터가 가능합니다.`
         sn.open()
 
         settingHandler.toggle()

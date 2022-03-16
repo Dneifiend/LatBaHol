@@ -2,7 +2,8 @@
 <html lang="ko-KR">
 
 <head>
-  <base href="https://dneifiend.github.io/LatBaHol/">
+  <!-- <base href="https://dneifiend.github.io/LatBaHol/"> -->
+  <base href="https://127.0.0.1:8080/">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +22,18 @@
   <meta name="theme-color" content="#33343C">
   <link rel="favicon" href="https://dneifiend.github.io/LatBaHol/favicon.ico">
   <link rel="shortcut icon" href="https://dneifiend.github.io/LatBaHol/favicon.ico">
+  
+
+  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+  
+
+  
+  
+  
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  
 
 
   <!-- chart js -->
@@ -30,10 +43,6 @@
   <title>랏바홀 레이드</title>
 
 
-  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
-  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,12 +56,13 @@
 
 <body oncontextmenu="return false">
 
+
   <div id="main-container">
     <header class="mdc-top-app-bar mdc-top-app-bar--fixed bg-dark-1">
       <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
           <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button text-white-2-i"
-            aria-label="Open navigation menu">menu</button>
+            aria-label="Open navigation menu" onclick="settingHandler.on(event)">settings</button>
         </section>
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-mid justify-content-center">
           <span class="mdc-top-app-bar__title ">랏바홀 레이드 목록</span>
@@ -155,7 +165,7 @@
 
             <div class="complete-button-container ripple primary">
               <i class="material-icons mdc-button__icon" aria-hidden="true">fact_check</i><span
-                style="padding-left: 0.4rem;">완료</span>
+                style="padding-left: 0.4rem;">이 레이드 완료</span>
             </div>
           </div>
         </div>
@@ -375,8 +385,40 @@
 
 
 
-  <script src="render.js"></script>
-  <script src="latBaHol.js"></script>
-</body>
+  <div id="modal" style="visibility: hidden;" onclick="settingHandler.close(this,event)">
+    <div class="modal-pop">
+      
+      <label class="mdc-text-field mdc-text-field--filled mdc-text-field--with-leading-icon">
+        <span class="mdc-text-field__ripple"></span>
+        <span class="mdc-floating-label" id="user-name">닉네임</span>
+        <i class="material-icons mdc-text-field__icon mdc-text-field__icon--leading" tabindex="0" role="button">face</i>
+        <input class="mdc-text-field__input" type="text" aria-labelledby="user-name" id="user-name-text-input">
+        <span class="mdc-line-ripple"></span>
+      </label>
+      <br>
+      <button class="mdc-button mdc-button--raised mdc-button--leading" onclick="settingHandler.submit()">
+        <span class="mdc-button__ripple"></span>
+        <i class="material-icons mdc-button__icon" aria-hidden="true">save</i>
+        <span class="mdc-button__label">저장</span>
+      </button>
 
+    </div>
+  </div>
+
+
+  <aside class="mdc-snackbar" style="z-index: 999999;">
+    <div class="mdc-snackbar__surface" role="status" aria-relevant="additions">
+      <div class="mdc-snackbar__label" aria-atomic="false">
+        snackbar
+      </div>
+    </div>
+  </aside>
+
+</body>
+<script src="latBaHol.js"></script>
+
+
+<script src="/js/material-components-web.min.js"></script>
+<script src="render.js"></script>
+<script src="/js/index.js"></script>
 </html>

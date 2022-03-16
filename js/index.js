@@ -21,8 +21,8 @@ let settingHandler = {
         textField.value = localStorage.userName
         document.querySelector('#modal').style.visibility = 'visible'
     }, 
-    submit: function(charName){
-        var userName = document.querySelector('#user-name-text-input').value
+    submit: function(){
+        var userName = document.querySelector('#user-name-text-input').value || ""
         localStorage.setItem('userName', userName)
 
 

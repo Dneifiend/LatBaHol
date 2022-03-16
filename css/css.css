@@ -310,6 +310,10 @@ main {
 }
 
 
+.pointer {
+    cursor: pointer;
+}
+
 
 
 .btn-complete{
@@ -397,6 +401,7 @@ main {
 .ripple {
     background-position: center;
     transition: background 0.8s;
+    cursor: pointer;
 }
 .ripple:hover {
     background: var(--dark-grey) radial-gradient(circle, transparent 1%, var(--dark-grey) 1%) center / 15000%;

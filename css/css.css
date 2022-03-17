@@ -402,6 +402,7 @@ main {
     background-position: center;
     transition: background 0.8s;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 .ripple:hover {
     background: var(--dark-grey) radial-gradient(circle, transparent 1%, var(--dark-grey) 1%) center / 15000%;
@@ -414,7 +415,6 @@ main {
 }
 
 
-
 .ripple.primary:hover {
     background: var(--primary) radial-gradient(circle, transparent 1%, var(--primary) 1%) center / 15000%;
 }
@@ -424,8 +424,6 @@ main {
     background-size: 100%;
     transition: background 0s;
 }
-
-
 
 
 
@@ -451,7 +449,7 @@ main {
 
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0,0,0,0.5);
 } 
 
 .modal-pop{

@@ -231,7 +231,14 @@ class Raid {
             // 레이드 컨테이이너
             var raidContainer = document.createElement('div')
             raidContainer.classList.add("raid-container")
-            raidContainer.addEventListener('click',e=>{e.target.classList.toggle('unfold')})
+            raidContainer.addEventListener('click',e=>{
+                if(!e.target.classList.contains('raid-list')){
+                    return
+                }
+                raidContainer.classList.toggle('unfold');
+                raidMemberContainer.style.height = raidContainer.classList.contains('unfold') ? `calc(0.5rem + ${65*Math.round((raidinfo.checkedMember.length+1)/2)}px + 0.5rem)` : '70px';
+            })
+            
             raidContainer.id = `raid-${raidIdx}`
 
             // 레이드 컨테이이너 헤드
@@ -239,12 +246,123 @@ class Raid {
             var myRaidCharacter = raidinfo.checkedMember
                 .find(raidCheckedChar => this.myCharacter.includes(raidCheckedChar))
 
-            raidHeader.classList.add("mdc-card","raid-list","ripple",`list-me${myRaidCharacter ? '' : '-not'}`)
+            raidHeader.classList.add("mdc-card","raid-list","ripple",'list')
+            if(myRaidCharacter){
+                raidHeader.classList.add('me')
+            }
 
 
-            // TODO myRaidCharacter 세팅
-            console.log(myRaidCharacter, raidHeader)
-            // TODO 레이드 멤버목록
+            // 레이드 컨테이이너 헤드 이름
+            var raidNameContainer = document.createElement('div')
+            raidNameContainer.classList.add("raid-name-container")
+            var arrowUp = document.createElement('i')
+            var arrowDown = document.createElement('i')
+            var arrows = [arrowUp,arrowDown]
+            arrows.forEach(arrow=>{
+                arrow.classList.add('material-icons','mdc-button__icon','text-white-2')
+                arrow.areahidden = true
+            })
+            arrowUp.classList.add('arrow-up')
+            arrowDown.classList.add('arrow-down')
+            arrowUp.textContent = 'keyboard_arrow_up'
+            arrowDown.textContent = 'keyboard_arrow_down'
+
+            var raidNameSpan = document.createElement('span')
+            raidNameSpan.classList.add('raid-name')
+            raidNameSpan.textContent = raidinfo.name
+
+            var raidTimeSapn = document.createElement('span')
+            raidTimeSapn.classList.add('raid-time','text-white-2')
+            raidTimeSapn.textContent = raidinfo.time==='' ? '' : `(${raidinfo.time})`
+
+            raidNameContainer.append(arrowUp,arrowDown,raidNameSpan,raidTimeSapn)
+
+
+            // 레이드 리스트 정보
+            var raidListInfo = document.createElement('div')
+            raidListInfo.classList.add("raid-list-info")
+            
+            var myCharSpan = document.createElement('span')
+            myCharSpan.classList.add('text-color-highlight','m2-s-e')
+            myCharSpan.textContent = myRaidCharacter
+            var peopleIco = document.createElement('i')
+            peopleIco.classList.add('material-icons','mdc-button__icon','text-white-2')
+            peopleIco.textContent = 'people'
+            var memberCountSpan = document.createElement('span')
+            memberCountSpan.classList.add('text-white-2')
+            memberCountSpan.textContent = `×${raidinfo.checkedMember.length}`
+            raidListInfo.append(myCharSpan,peopleIco,memberCountSpan)
+
+            raidHeader.append(raidNameContainer,raidListInfo)
+            raidContainer.append(raidHeader)
+
+
+
+            // 레이드 멤버 목록
+            var raidMemberContainer = document.createElement('div')
+            raidMemberContainer.classList.add("raid-member-container")
+            var raidMemberList = document.createElement('div')
+            raidMemberList.classList.add("raid-member-list")
+
+            var minmax = getMinMaxIlv(raidinfo.checkedMember)
+            console.log(minmax,raidinfo.checkedMember)
+
+            raidinfo.checkedMember.forEach((raidMember, raidMemberIdx)=>{
+                var raidMemberSimpleContainer = document.createElement('div')
+                raidMemberSimpleContainer.classList.add("raid-member-simple")
+                if(raidMember === myRaidCharacter){
+                    raidMemberSimpleContainer.classList.add('me')
+                }
+
+                var raidMemberDiv = document.createElement('div')
+                var userNameSpan = document.createElement('span')
+                userNameSpan.classList.add('big','user-name')
+                var charNameSpan = document.createElement('span')
+                charNameSpan.classList.add('char-name')
+                userNameSpan.textContent = this.data.members[raidMember]?.userName
+                charNameSpan.textContent = `(${raidMember})`
+                raidMemberDiv.append(userNameSpan,charNameSpan)
+
+                // 캐릭터 뱃지 컨테이너
+                var charBadgeContainer = document.createElement('div')
+                charBadgeContainer.classList.add("char-badge-container")
+                
+                // iLv
+                var iLvSpan = document.createElement('span')
+                var iLv = this.data.members[raidMember]?.iLv
+                iLvSpan.classList.add('badge','iLv')
+                iLvSpan.textContent = iLv
+                iLvSpan.style.backgroundColor = getMinMaxColor(iLv, minmax.maxLv, minmax.minLv,[0,93,86,1],[9,48,44,1])
+                charBadgeContainer.append(iLvSpan)
+
+                // classJob
+                var classJobSpan = document.createElement('span')
+                classJobSpan.classList.add('badge','job')
+                classJobSpan.textContent = this.data.members[raidMember]?.job
+                charBadgeContainer.append(classJobSpan)
+
+
+                raidMemberSimpleContainer.append(raidMemberDiv,charBadgeContainer)
+                raidMemberList.append(raidMemberSimpleContainer)
+            })
+
+            raidMemberContainer.append(raidMemberList)
+
+            raidContainer.append(raidMemberContainer)
+
+
+
+            // TODO 레이드 완료버튼
+
+
+
+
+
+
+
+
+            document.querySelector('main').append(raidContainer)
+            console.log(myRaidCharacter, raidContainer)
         })
     }
 
@@ -279,3 +397,19 @@ function raidInit() {
 raidInit()
 
 
+function getMinMaxIlv(characters=[]){
+    var iLvs = characters.map(charname=>window.$raid.data.members[charname].iLv)
+    var minLv = Math.min(...iLvs)
+    var maxLv = Math.max(...iLvs)
+    return {minLv,maxLv}
+}
+
+
+function getMinMaxColor(iLv=50,minLv=0, maxLv=100,minRGBA=[0,0,0,0], maxRGBA=[255,255,255,0]){
+    var percent = (iLv-minLv)/(maxLv-minLv)
+    var r = minRGBA[0] + (maxRGBA[0]-minRGBA[0])*percent
+    var g = minRGBA[1] + (maxRGBA[1]-minRGBA[1])*percent
+    var b = minRGBA[2] + (maxRGBA[2]-minRGBA[2])*percent
+    var a = minRGBA[3] + (maxRGBA[3]-minRGBA[3])*percent
+    return `rgba(${r},${g},${b},${a})`
+}

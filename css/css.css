@@ -99,14 +99,14 @@ main {
     color: #1EB980;
 }
 
-.raind-list-info .text-color-highlight{
+.raid-list-info .text-color-highlight{
     margin-right: 0.5rem;
 }
 
 
 
 
-.raind-list-info {
+.raid-list-info {
     display: flex;
     align-items: flex-end;
 }
@@ -134,10 +134,10 @@ main {
 }
 
 
-.list-me {
+.list.me {
     border-left: 0.5rem solid #1EB980;
 }
-.list-me-not {
+.list {
     border-left: 0.5rem solid #045D56;
 }
 .raid-list.complete {
@@ -264,18 +264,25 @@ main {
                 height 0.5s ease-in-out,
                 margin-top 0.5s ease-in-out;
 
-    /* margin-bottom:273px; */
     opacity: 0;
     margin-top:-5rem;
-    height:70px;
+    height:5rem;
 
 }
 
 .unfold .raid-member-container {
     /* TODO javascript로 height 강제 지정해줘야 함 */
-    height:210px;
+    /* height:210px; */
+    /* height:fit-content; */
     opacity: 1;
     margin-top:0;
+}
+
+.raid-container:not(.unfold) .arrow-up{
+    display: none;
+}
+.unfold .arrow-down{
+    display: none;
 }
 
 .complete-button-container,

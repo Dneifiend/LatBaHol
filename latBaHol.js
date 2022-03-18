@@ -205,6 +205,9 @@ class Raid {
         this.data = json
         this.raidNode = document.createElement('main')
         this.raidNode.classList.add("mdc-top-app-bar--fixed-adjust", "scroll")
+        this.data.raids.forEach(raid => {
+            raid.checkedMember.sort((charNameA,charNameB)=>this.data.members[charNameB].iLv-this.data.members[charNameA].iLv)
+        })
         
         this.state = "data loaded"
         this.setMyCharacter()
@@ -360,9 +363,15 @@ class Raid {
 
                 // classJob
                 var classJobSpan = document.createElement('span')
+                var jobName = this.data.members[raidMember]?.job
                 classJobSpan.classList.add('badge','job')
-                classJobSpan.textContent = this.data.members[raidMember]?.job
+                classJobSpan.textContent = this.data.shortName[jobName]
+                if(this.data.supports.includes(jobName)){
+                    classJobSpan.classList.add('heal')
+                    classJobSpan.textContent+='❤'
+                } 
                 charBadgeContainer.append(classJobSpan)
+
 
 
                 raidMemberSimpleContainer.append(raidMemberDiv,charBadgeContainer)
@@ -402,17 +411,17 @@ class Raid {
                 completeBtnSpan.style.paddingLeft = "0.4rem"
                 completeBtnSpan.textContent = '이 레이드 완료'
                 completeButtonContainer.addEventListener('click', _ => {
-                    // post로 레이드 이름, 시간을 보내 시간을 완료로 변경
-                    alert(raidIdx)
+                    var _confirm = confirm(`정말 '${raidinfo.name}${raidinfo.time === "" ? "" : ` (${raidinfo.time})`}' 레이드를 완료하시겠습니까?`)
+                    if (_confirm) {
+                        // TODO post로 레이드 이름, 시간을 보내 시간을 완료로 변경
+                        alert('완료')
+                    }
                 })
                 completeButtonContainer.append(completeIcon, completeBtnSpan)
                 raidMemberList.append(completeButtonContainer)
             }
 
             
-
-
-
 
 
 

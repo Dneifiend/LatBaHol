@@ -6,13 +6,13 @@ window.progressBar = {
     on: function () {
         this.el.forEach(el => {
             var highlight = el.querySelector('#progress-bar-highlight')
-            highlight.style.background = "linear-gradient(90deg, #045d56 20%, #1eb980 60%, #045d56)"
+            highlight.style.background = "#1eb980"
             el.classList.add('on')
             highlight.classList.toggle('s')
 
             var _ci = setInterval(() => {
                 highlight.classList.toggle('s')
-            }, 3000)
+            }, 1500)
 
             this._si.push(_ci)
         });

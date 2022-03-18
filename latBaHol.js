@@ -8,11 +8,10 @@ window.progressBar = {
             var highlight = el.querySelector('#progress-bar-highlight')
             highlight.style.background = "#1eb980"
             el.classList.add('on')
-            highlight.classList.toggle('s')
 
             var _ci = setInterval(() => {
                 highlight.classList.toggle('s')
-            }, 1500)
+            }, 1000)
 
             this._si.push(_ci)
         });
@@ -27,7 +26,6 @@ window.progressBar = {
         this._si.forEach(si => { clearInterval(si) })
     }
 }
-
 
 
 
@@ -110,6 +108,7 @@ function wait(time) {
 
 
 window.progressBar.init()
+window.progressBar.on()
 scrollEventHandler.init(250)
 
 let settingHandler = {
@@ -203,11 +202,13 @@ class Raid {
 
     init(json){
         this.data = json
-        this.raidNode = document.createElement('main')
-        this.raidNode.classList.add("mdc-top-app-bar--fixed-adjust", "scroll")
+        this.raidNode = document.querySelector('main')
+        this.raidNode.classList.remove('loading')
         this.data.raids.forEach(raid => {
-            raid.checkedMember.sort((charNameA,charNameB)=>this.data.members[charNameB].iLv-this.data.members[charNameA].iLv)
+            raid.checkedMember
+            .sort((charNameA,charNameB)=>this.data.members[charNameB].iLv-this.data.members[charNameA].iLv)
         })
+        this.data.raids.sort((raidA,raidB)=>raidA.time === "완료" ? 1 : raidB.time === "완료" ? -1 : -0)
         
         this.state = "data loaded"
         this.setMyCharacter()
@@ -251,18 +252,16 @@ class Raid {
             var raidContainer = document.createElement('div')
             raidContainer.classList.add("raid-container")
 
-            raidContainer.addEventListener('click',e=>{
-                if(!e.target.classList.contains('raid-list')){
-                    return
-                }
-                raidContainer.classList.toggle('unfold');
-                raidMemberContainer.style.height = raidContainer.classList.contains('unfold') ? `calc(0.5rem + ${65*Math.round((raidinfo.checkedMember.length+1)/2)}px + 0.5rem)` : '70px';
-            })
+
             
             raidContainer.id = `raid-${raidIdx}`
 
             // 레이드 컨테이이너 헤드
             var raidHeader = document.createElement('div')
+            raidHeader.addEventListener('click',e=>{
+                raidContainer.classList.toggle('unfold');
+                raidMemberContainer.style.height = raidContainer.classList.contains('unfold') ? `calc(0.5rem + ${65*Math.round((raidinfo.checkedMember.length+1)/2)}px + 0.5rem)` : '70px';
+            })
             
             var myRaidCharacter = raidinfo.checkedMember
                 .find(raidCheckedChar => this.myCharacter.includes(raidCheckedChar))
@@ -282,16 +281,10 @@ class Raid {
             var raidNameContainer = document.createElement('div')
             raidNameContainer.classList.add("raid-name-container")
             var arrowUp = document.createElement('i')
-            var arrowDown = document.createElement('i')
-            var arrows = [arrowUp,arrowDown]
-            arrows.forEach(arrow=>{
-                arrow.classList.add('material-icons','mdc-button__icon','text-white-2')
-                arrow.areahidden = true
-            })
+            arrowUp.classList.add('material-icons','mdc-button__icon','text-white-2')
+            arrowUp.areahidden = true
             arrowUp.classList.add('arrow-up')
-            arrowDown.classList.add('arrow-down')
             arrowUp.textContent = 'keyboard_arrow_up'
-            arrowDown.textContent = 'keyboard_arrow_down'
 
             var raidNameSpan = document.createElement('span')
             raidNameSpan.classList.add('raid-name')
@@ -301,7 +294,7 @@ class Raid {
             raidTimeSapn.classList.add('raid-time','text-white-2')
             raidTimeSapn.textContent = raidinfo.time==='' ? '' : `(${raidinfo.time})`
 
-            raidNameContainer.append(arrowUp,arrowDown,raidNameSpan,raidTimeSapn)
+            raidNameContainer.append(arrowUp,raidNameSpan,raidTimeSapn)
 
 
             // 레이드 리스트 정보
@@ -384,7 +377,6 @@ class Raid {
 
 
 
-            // TODO 레이드 완료버튼
             if (raidinfo.time === "완료") {
                 raidHeader.classList.add("complete")
                 raidMemberContainer.classList.add("complete")
@@ -442,7 +434,7 @@ class Raid {
 
 
 function raidInit() {
-    window.progressBar.on()
+    
     fetch('https://script.google.com/macros/s/AKfycbxz8bm2b9BrHUGi3GrgPMdF1kP6cXqjeofI2Q1MWQPNJ-5zs7phHS1c5IGsTFORBHJ6/exec')
         .then(res => res.json())
         .then(json => {

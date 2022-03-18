@@ -50,10 +50,17 @@ main {
     padding-left: 0.5rem;
 
     overflow: overlay;
-    width: calc(100vw - 1.5rem);
     height: calc(100vh - 180px);
+    transition: background ease-in-out 0.5s;
 }
 
+main.loading{
+    background: url("../resource/mococo_idk.png") no-repeat center center;
+    background-color: var(--dark-grey);
+    /* background-color: red; */
+    background-size: 200px;
+    background-position-y: 300px;
+}
 
 
 /* scroll */
@@ -143,8 +150,12 @@ main {
     border-left: 0.5rem solid #535353;
     
 }
-.raid-list.complete * {
-    color: #696969;
+.raid-list.complete *,
+.raid-member-container.complete * {
+    color: var(--grey) !important;
+}
+.raid-member-container.complete .heal{
+    background-color: #2a0e1c !important;
 }
 
 .raid-list{
@@ -159,11 +170,10 @@ main {
 
 }
 
-
 #progress-bar {
     height: 2px;
     width: 100vw;
-    transition: background-color 0.55s ease-in-out;
+    transition: background-color 0.55s cubic-bezier(0.075, 0.82, 0.165, 1);
     background-color: var(--dark);
     position: sticky;
     top: 56px;
@@ -172,6 +182,7 @@ main {
 
 #progress-bar.on {
     background-color: #045d56;
+    /* background-color: var(--dark-grey); */
     display: block;
     height: 2px;
     width: 100%;
@@ -185,7 +196,7 @@ main {
 }
 #progress-bar-highlight.s{
     margin-left: 100%;
-    transition: margin-left 1500ms cubic-bezier(0.39, 0.58, 0.57, 1);
+    transition: margin-left 1s cubic-bezier(0.39, 0.58, 0.57, 1);
 }
 
 
@@ -274,18 +285,17 @@ main {
 }
 
 .unfold .raid-member-container {
-    /* TODO javascript로 height 강제 지정해줘야 함 */
-    /* height:210px; */
-    /* height:fit-content; */
     opacity: 1;
     margin-top:0;
 }
 
-.raid-container:not(.unfold) .arrow-up{
-    display: none;
+.arrow-up {
+    transition: transform 0.5s ease-in-out;
 }
-.unfold .arrow-down{
-    display: none;
+.unfold .arrow-up{
+    /* display: none; */
+    transform: rotate(180deg);
+    /* transform: rotateX(180deg) */
 }
 
 .complete-button-container,
@@ -490,4 +500,23 @@ main {
 .hidden {
     /* visibility: hidden; */
     display: none;
+}
+
+
+
+.raid-container:not(.hidden){
+    display: block;
+    transition: opacity ease-in-out 0.5s,
+                height ease-in-out 0.5s;
+    opacity: 1;
+
+}
+.raid-container.hidden{
+    /* TODO 여기 깔끔하게 페이드아웃 . 옆으로 빼거나 해야 함 */
+    display: block;
+    transition: opacity ease-in-out 0.5s,
+                height ease-in-out 0.5s;
+    opacity: 0;
+    height: 0px;
+    margin-right: -20%;
 }

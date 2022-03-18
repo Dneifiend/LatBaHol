@@ -68,8 +68,8 @@
           <span class="mdc-top-app-bar__title ">랏바홀 레이드 목록</span>
         </section>
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-          <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button text-white-2-i"
-            aria-label="filter_alt" style="color:rgb(151, 151, 151) !important;">person</button>
+          <button id="filter-toggle-btn" class="material-icons mdc-top-app-bar__action-item mdc-icon-button text-white-2-i"
+            aria-label="filter_alt" style="color:rgb(151, 151, 151) !important;" onclick="settingHandler.filterToggle()">person</button>
         </section>
       </div>
     </header>
@@ -404,7 +404,6 @@
         <i class="material-icons mdc-button__icon" aria-hidden="true">save</i>
         <span class="mdc-button__label">저장</span>
       </button>
-
     </div>
   </div>
 

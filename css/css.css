@@ -6,7 +6,6 @@
     --dark-2 : #2d2d2d;
     --dark-3 : #2a2e35;
     --grey : #979797;
-    /* --dark-grey: #373740; */
     --dark-grey: #1F2227;
     --deep-dark-grey : #4f5655;
     --primary: #00312a;
@@ -243,6 +242,10 @@ main {
     align-items: center;
 }
 
+.raid-member-container.complete {
+    color: var(--grey)
+}
+
 .text-medium {
     font-size: 2rem;
 }
@@ -296,21 +299,24 @@ main {
     margin: 0.1rem 0;
     padding: 0.5rem 0.25rem;
     background-color: var(--dark-grey);
-
     box-shadow: inset 0 0.4rem 0px var(--deep-dark-grey);
+    -webkit-tap-highlight-color: transparent;    
+}
 
-    
+.complete-button-container.disabled {
+    box-shadow: inset 0 0.4rem 0px var(--deep-dark-grey);
+    background-color: var(--dark-grey);
+    color:var(--grey)
 }
 
 
 .raid-member-simple.me{
-    /* border-left: 2px solid var(--primary-hightlight); */
-    /* background: linear-gradient(120deg, rgba(13,82,58,1) 0%, rgba(25,51,46,1) 10%, rgba(31,34,39,1) 30%); */
     box-shadow: inset 0 0.4rem 0px var(--secondary);
 }
 
 .complete-button-container {
     background: var(--primary);
+    height: 48px;
     flex-direction: row;
     cursor: pointer;
     box-shadow: inset 0 0.4rem 0px var(--secondary);

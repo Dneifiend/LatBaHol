@@ -112,9 +112,6 @@ function wait(time) {
 window.progressBar.init()
 scrollEventHandler.init(250)
 
-
-
-
 let settingHandler = {
     toggle : function (){
         var visibility = document.querySelector('#modal').style.visibility ? 'hidden' : 'visible'
@@ -151,14 +148,33 @@ let settingHandler = {
 
         settingHandler.toggle()
     },
-
+    setFilterBtnInit(){
+        var setting = localStorage.filtered==='true' ? true : false
+        var btn = document.querySelector('#filter-toggle-btn')
+        if(setting){
+            btn.style.setProperty('color','var(--primary-hightlight)','important')
+        }
+        if(!setting){
+            btn.style.setProperty('color','rgb(151, 151, 151)','important')
+        }
+    },
     filterToggle: function(){
-        var setting = localStorage.filtered || false
-        setting = setting==='true' ? false : true
-        console.log('toggle userName Filter')
+        var setting = localStorage.filtered==='true' ? true : false
+        setting = !setting
+        var btn = document.querySelector('#filter-toggle-btn')
+        
+        if(setting){
+            btn.style.setProperty('color','var(--primary-hightlight)','important')
+            document.querySelectorAll('.raid-container:not(.me)').forEach(d=>{d.classList.add('hidden')})
+        }
+        if(!setting){
+            btn.style.setProperty('color','rgb(151, 151, 151)','important')
+            document.querySelectorAll('.raid-container:not(.me)').forEach(d=>{d.classList.remove('hidden')})
+        }
+        localStorage.setItem('filtered', setting)
     }
 }
-
+settingHandler.setFilterBtnInit()
 
 
 
@@ -231,6 +247,7 @@ class Raid {
             // 레이드 컨테이이너
             var raidContainer = document.createElement('div')
             raidContainer.classList.add("raid-container")
+
             raidContainer.addEventListener('click',e=>{
                 if(!e.target.classList.contains('raid-list')){
                     return
@@ -243,14 +260,20 @@ class Raid {
 
             // 레이드 컨테이이너 헤드
             var raidHeader = document.createElement('div')
+            
             var myRaidCharacter = raidinfo.checkedMember
                 .find(raidCheckedChar => this.myCharacter.includes(raidCheckedChar))
 
             raidHeader.classList.add("mdc-card","raid-list","ripple",'list')
+
             if(myRaidCharacter){
                 raidHeader.classList.add('me')
+                raidContainer.classList.add('me')
             }
-
+            if(!myRaidCharacter && localStorage.getItem('filtered')==='true'){
+                raidContainer.classList.add('hidden')
+            }
+            
 
             // 레이드 컨테이이너 헤드 이름
             var raidNameContainer = document.createElement('div')
@@ -353,6 +376,41 @@ class Raid {
 
 
             // TODO 레이드 완료버튼
+            if (raidinfo.time === "완료") {
+                raidHeader.classList.add("complete")
+                raidMemberContainer.classList.add("complete")
+
+                var completeButtonContainer = document.createElement('div')
+                completeButtonContainer.classList.add("complete-button-container",'disabled')
+                var completeIcon = document.createElement('i')
+                completeIcon.classList.add('material-icons', 'mdc-button__icon')
+                completeIcon.textContent = 'fact_check'
+                var completeBtnSpan = document.createElement('span')
+                completeBtnSpan.style.paddingLeft = "0.4rem"
+                completeBtnSpan.textContent = '완료된 레이드'
+                completeButtonContainer.append(completeIcon, completeBtnSpan)
+                raidMemberList.append(completeButtonContainer)
+
+            }
+            if (raidinfo.time !== "완료") {
+                var completeButtonContainer = document.createElement('div')
+                completeButtonContainer.classList.add("complete-button-container", "ripple", "primary")
+                var completeIcon = document.createElement('i')
+                completeIcon.classList.add('material-icons', 'mdc-button__icon')
+                completeIcon.textContent = 'fact_check'
+                var completeBtnSpan = document.createElement('span')
+                completeBtnSpan.style.paddingLeft = "0.4rem"
+                completeBtnSpan.textContent = '이 레이드 완료'
+                completeButtonContainer.addEventListener('click', _ => {
+                    // post로 레이드 이름, 시간을 보내 시간을 완료로 변경
+                    alert(raidIdx)
+                })
+                completeButtonContainer.append(completeIcon, completeBtnSpan)
+                raidMemberList.append(completeButtonContainer)
+            }
+
+            
+
 
 
 

@@ -470,7 +470,7 @@ class Raid {
                                 window.location.reload()
                             }
                             else{
-                                alert('오류로 인해 데이터를 저장할 수 없습니다.')
+                                // alert('오류로 인해 데이터를 저장할 수 없습니다.')
                             }
                         })
                         .catch(err=>{console.log(err)})

@@ -193,6 +193,7 @@ settingHandler.setFilterBtnInit()
 
 class Raid {
     constructor() {
+        this.version = "1.0.0"
         this.me = localStorage.getItem('userName') || ''
         this.myCharacter = []
         this.state = 'not init'
@@ -204,6 +205,7 @@ class Raid {
 
 
     init(json){
+        
         this.data = json || this.data
         this.raidNode = document.querySelector('main') || document.createElement('main')
         document.body.append(this.raidNode)
@@ -218,7 +220,7 @@ class Raid {
         })
         this.data.raids.sort((raidA,raidB)=>raidA.time === "완료" ? 1 : raidB.time === "완료" ? -1 : -0)
 
-        this.state = "data loaded"
+        this.state = "data loaded. v" + this.version
         this.setMyCharacter()
         this.setRaidContent()
         this.setRaidInfo()
@@ -470,7 +472,7 @@ class Raid {
                         })
                         .then(res=>{
                             alert('완료')
-                            window.location.reload()
+                            // window.location.reload()
                         })
                         .catch(err=>{console.log(err)})
                         

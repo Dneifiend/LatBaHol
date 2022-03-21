@@ -164,6 +164,10 @@ let settingHandler = {
         var btn = document.querySelector('#filter-toggle-btn')
         
         if(setting){
+            if($raid.me===""){
+                this.on()
+                return;
+            }
             btn.style.setProperty('color','var(--primary-hightlight)','important')
             document.querySelectorAll('.raid-container:not(.me)').forEach(d=>{d.classList.add('hidden')})
         }
@@ -193,7 +197,7 @@ settingHandler.setFilterBtnInit()
 
 class Raid {
     constructor() {
-        this.version = "1.0.0"
+        this.version = "1.0.1"
         this.me = localStorage.getItem('userName') || ''
         this.myCharacter = []
         this.state = 'not init'

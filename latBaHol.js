@@ -113,12 +113,11 @@ scrollEventHandler.init(250)
 
 let settingHandler = {
     toggle : function (){
-        var visibility = document.querySelector('#modal').style.visibility ? 'hidden' : 'visible'
-        document.querySelector('#modal').style.visibility = visibility
+        document.querySelector('#modal').classList.toggle('hidden')
     },
     close : function (ele, event){
         if(event.target.id==='modal'){
-            document.querySelector('#modal').style.visibility = 'hidden'
+            document.querySelector('#modal').classList.add('hidden')
             return
         }
 
@@ -132,12 +131,12 @@ let settingHandler = {
         var MDCTextField = mdc.textField.MDCTextField;
         var textField = new MDCTextField(document.querySelector('.mdc-text-field'))
         textField.value = userName
-        document.querySelector('#modal').style.visibility = 'visible'
+        document.querySelector('#modal').classList.remove('hidden')
+        textField.focus()
     }, 
     submit: function(){
         var userName = document.querySelector('#user-name-text-input').value || ""
-        localStorage.setItem('userName', userName)
-
+        $raid.changeUser(userName)
 
         var MDCSnackbar = mdc.snackbar.MDCSnackbar
         var sn = new MDCSnackbar(document.querySelector('.mdc-snackbar'))
@@ -201,8 +200,11 @@ class Raid {
 
 
     init(json){
-        this.data = json
-        this.raidNode = document.querySelector('main')
+        this.data = json || this.data
+        this.raidNode = document.querySelector('main') || document.createElement('main')
+        document.body.append(this.raidNode)
+        this.raidNode.classList.add('mdc-top-app-bar--fixed-adjust','scroll','loading')
+
         this.raidNode.classList.remove('loading')
         this.data.raids.forEach(raid => {
             raid.checkedMember
@@ -216,12 +218,22 @@ class Raid {
         console.log(this.state)
     }
 
+    changeUser(username){
+        var userName = username || ""
+        localStorage.setItem('userName', userName)
+
+        this.me = username
+        this.raidNode.remove()
+        this.init()
+    }
+    
+
     setMyCharacter() {
         if (this.me === '') {
             return
         }
 
-        this.me = Object.values(this.data.members).find(e => e.charName === this.me || e.userName === this.me).userName
+        this.me = Object.values(this.data.members).find(e => e.charName === this.me || e.userName === this.me)?.userName || ''
 
         this.myCharacter = Object.keys(this.data.members)
             .filter(charName => {
@@ -260,7 +272,7 @@ class Raid {
             var raidHeader = document.createElement('div')
             raidHeader.addEventListener('click',e=>{
                 raidContainer.classList.toggle('unfold');
-                raidMemberContainer.style.height = raidContainer.classList.contains('unfold') ? `calc(0.5rem + ${65*Math.round((raidinfo.checkedMember.length+1)/2)}px + 0.5rem)` : '70px';
+                raidMemberContainer.style.height = raidContainer.classList.contains('unfold') ? `calc(0.5rem + ${65*Math.round((raidinfo.checkedMember.length+1)/2)}px + 0.5rem)` : '72px';
             })
             
             var myRaidCharacter = raidinfo.checkedMember
@@ -420,7 +432,7 @@ class Raid {
 
 
 
-            document.querySelector('main').append(raidContainer)
+            this.raidNode.append(raidContainer)
             console.log(myRaidCharacter, raidContainer)
         })
     }

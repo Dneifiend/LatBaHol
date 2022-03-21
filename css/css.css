@@ -469,10 +469,12 @@ main.loading{
 
     position: absolute;
     z-index: 99999;
-
+    opacity:1;
     width: 100vw;
     height: 100vh;
     background-color: rgba(0,0,0,0.5);
+
+    transition: opacity 0.5s ease-in-out;
 } 
 
 .modal-pop{
@@ -503,20 +505,53 @@ main.loading{
 }
 
 
+#modal.hidden{
+    z-index: -1;
+    opacity:0;
+}
+
+
 
 .raid-container:not(.hidden){
     display: block;
-    transition: opacity ease-in-out 0.5s,
-                height ease-in-out 0.5s;
+
+    transition: all 0.5s ease-in-out;
+
     opacity: 1;
+    transform: translateX(0);
+    height: auto;
+    
 
 }
 .raid-container.hidden{
     /* TODO 여기 깔끔하게 페이드아웃 . 옆으로 빼거나 해야 함 */
     display: block;
-    transition: opacity ease-in-out 0.5s,
-                height ease-in-out 0.5s;
+    animation: card-out 0.75s ease-in-out;
+    animation-iteration-count: 1;
+    animation-direction: alternate;
+
     opacity: 0;
+    transform: translateX(-100%);
     height: 0px;
-    margin-right: -20%;
+
+}
+
+@keyframes card-out {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+        height: auto;
+        
+    }
+
+    80% {
+        opacity: 1;
+        transform: translateX(-100%);
+        height: auto;
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(-100%);
+        height: 0px;
+    }
 }

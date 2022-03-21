@@ -197,7 +197,7 @@ settingHandler.setFilterBtnInit()
 
 class Raid {
     constructor() {
-        this.version = "1.0.1"
+        this.version = "1.0.2"
         this.me = localStorage.getItem('userName') || ''
         this.myCharacter = []
         this.state = 'not init'
@@ -463,10 +463,7 @@ class Raid {
                     if (_confirm) {
                         // TODO post로 레이드 이름, 시간을 보내 시간을 완료로 변경
                         fetch(`https://script.google.com/macros/s/AKfycbxz8bm2b9BrHUGi3GrgPMdF1kP6cXqjeofI2Q1MWQPNJ-5zs7phHS1c5IGsTFORBHJ6/exec?isAPI=true&name=${raidinfo.name}&time=${raidinfo.time}`)
-                        .then(res=>{
-                            res.text()
-                            // window.location.reload()
-                        })
+                        .then(res=>res.text())
                         .then(resTxt=>{
                             if(resTxt === "done"){
                                 window.location.reload()

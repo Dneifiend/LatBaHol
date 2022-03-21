@@ -311,7 +311,7 @@ class Raid {
             var raidHeader = document.createElement('div')
             raidHeader.addEventListener('click',e=>{
                 raidContainer.classList.toggle('unfold');
-                raidMemberContainer.style.height = raidContainer.classList.contains('unfold') ? `calc(0.5rem + ${65*Math.round((raidinfo.checkedMember.length+1)/2)}px + 0.5rem)` : '72px';
+                raidMemberContainer.style.height = raidContainer.classList.contains('unfold') ? `calc(0.5rem + ${65*Math.round((raidinfo.checkedMember.length+1)/2)}px + 0.5rem)` : '73px';
             })
             
             var myRaidCharacter = raidinfo.checkedMember

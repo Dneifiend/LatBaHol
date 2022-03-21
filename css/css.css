@@ -525,7 +525,7 @@ main.loading{
 }
 .raid-container.hidden{
     /* TODO 여기 깔끔하게 페이드아웃 . 옆으로 빼거나 해야 함 */
-    display: block;
+    display: flow-root;
     animation: card-out 0.75s ease-in-out;
     animation-iteration-count: 1;
     animation-direction: alternate;

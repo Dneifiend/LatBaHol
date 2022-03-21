@@ -197,7 +197,7 @@ settingHandler.setFilterBtnInit()
 
 class Raid {
     constructor() {
-        this.version = "1.0.2"
+        this.version = "1.0.3"
         this.me = localStorage.getItem('userName') || ''
         this.myCharacter = []
         this.state = 'not init'
@@ -465,6 +465,7 @@ class Raid {
                         fetch(`https://script.google.com/macros/s/AKfycbxz8bm2b9BrHUGi3GrgPMdF1kP6cXqjeofI2Q1MWQPNJ-5zs7phHS1c5IGsTFORBHJ6/exec?isAPI=true&name=${raidinfo.name}&time=${raidinfo.time}`)
                         .then(res=>res.text())
                         .then(resTxt=>{
+                            console.log(resTxt)
                             if(resTxt === "done"){
                                 window.location.reload()
                             }

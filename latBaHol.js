@@ -502,18 +502,15 @@ function raidInit() {
     fetch('https://script.google.com/macros/s/AKfycbxz8bm2b9BrHUGi3GrgPMdF1kP6cXqjeofI2Q1MWQPNJ-5zs7phHS1c5IGsTFORBHJ6/exec')
         .then(res => res.json())
         .then(json => {
-
             window.$raid = new Raid()
             window.$raid.init(json)
-
-        })
-        .finally(() => {
-            window.progressBar.off()
         })
         .catch(err => {
             console.error(err)
-            alert('데이터를 불러오는데 실패했습니다. 다시 로드합니다.')
             window.location.reload()
+        })
+        .finally(() => {
+            window.progressBar.off()
         })
 }
 

@@ -458,25 +458,20 @@ class Raid {
                     var _confirm = confirm(`정말 '${raidinfo.name}${raidinfo.time === "" ? "" : ` (${raidinfo.time})`}' 레이드를 완료하시겠습니까?`)
                     if (_confirm) {
                         // TODO post로 레이드 이름, 시간을 보내 시간을 완료로 변경
-                        fetch('https://script.google.com/macros/s/AKfycbxz8bm2b9BrHUGi3GrgPMdF1kP6cXqjeofI2Q1MWQPNJ-5zs7phHS1c5IGsTFORBHJ6/exec',
-                        {
-                            method:'POST',
-                            mode:'no-cors',
-                            headers: {
-                                'content-type': 'text/plain;charset=utf-8'
-                            },
-                            body:JSON.stringify({
-                                raidName:raidinfo.name,
-                                beforeTime:raidinfo.time
-                            })
-                        })
+                        fetch(`https://script.google.com/macros/s/AKfycbxz8bm2b9BrHUGi3GrgPMdF1kP6cXqjeofI2Q1MWQPNJ-5zs7phHS1c5IGsTFORBHJ6/exec?isAPI=true&name=${raidinfo.name}&time=${raidinfo.time}`)
                         .then(res=>{
-                            alert('완료')
+                            res.text()
                             // window.location.reload()
                         })
+                        .then(resTxt=>{
+                            if(resTxt === "done"){
+                                window.location.reload()
+                            }
+                            else{
+                                alert('오류로 인해 데이터를 저장할 수 없습니다.')
+                            }
+                        })
                         .catch(err=>{console.log(err)})
-                        
-
                     }
                 })
                 completeButtonContainer.append(completeIcon, completeBtnSpan)

@@ -197,7 +197,7 @@ settingHandler.setFilterBtnInit()
 
 class Raid {
     constructor() {
-        this.version = "1.0.4"
+        this.version = "1.0.5"
         this.me = localStorage.getItem('userName') || ''
         this.myCharacter = []
         this.state = 'not init'
@@ -459,7 +459,7 @@ class Raid {
                 completeBtnSpan.style.paddingLeft = "0.4rem"
                 completeBtnSpan.textContent = '이 레이드 완료'
                 completeButtonContainer.addEventListener('click', _ => {
-                    var _confirm = confirm(`정말 '${raidinfo.name}${raidinfo.time === "" ? "" : ` (${raidinfo.time})`}' 레이드를 완료하시겠습니까?`)
+                    var _confirm = confirm(`정말 '${raidinfo.name}${raidinfo.time === "" ? "" : ` (${raidinfo.time})`}' 레이드를 완료로 변경하시겠습니까?`)
                     if (_confirm) {
                         // TODO post로 레이드 이름, 시간을 보내 시간을 완료로 변경
                         fetch(`https://script.google.com/macros/s/AKfycbxz8bm2b9BrHUGi3GrgPMdF1kP6cXqjeofI2Q1MWQPNJ-5zs7phHS1c5IGsTFORBHJ6/exec?isAPI=true&name=${raidinfo.name}&time=${raidinfo.time}`)

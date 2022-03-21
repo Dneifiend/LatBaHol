@@ -114,6 +114,7 @@ scrollEventHandler.init(250)
 let settingHandler = {
     toggle : function (){
         document.querySelector('#modal').classList.toggle('hidden')
+        $raid.setRaidInfo()
     },
     close : function (ele, event){
         if(event.target.id==='modal'){
@@ -145,6 +146,7 @@ let settingHandler = {
         sn.open()
 
         settingHandler.toggle()
+        $raid.setRaidInfo()
     },
     setFilterBtnInit(){
         var setting = localStorage.filtered==='true' ? true : false
@@ -170,6 +172,8 @@ let settingHandler = {
             document.querySelectorAll('.raid-container:not(.me)').forEach(d=>{d.classList.remove('hidden')})
         }
         localStorage.setItem('filtered', setting)
+
+        $raid.setRaidInfo()
     }
 }
 settingHandler.setFilterBtnInit()
@@ -206,16 +210,51 @@ class Raid {
         this.raidNode.classList.add('mdc-top-app-bar--fixed-adjust','scroll','loading')
 
         this.raidNode.classList.remove('loading')
+        document.querySelector("#raid-progress-value-span").classList.remove('hidden')
+
         this.data.raids.forEach(raid => {
             raid.checkedMember
             .sort((charNameA,charNameB)=>this.data.members[charNameB].iLv-this.data.members[charNameA].iLv)
         })
         this.data.raids.sort((raidA,raidB)=>raidA.time === "완료" ? 1 : raidB.time === "완료" ? -1 : -0)
-        
+
         this.state = "data loaded"
         this.setMyCharacter()
         this.setRaidContent()
+        this.setRaidInfo()
         console.log(this.state)
+    }
+
+    setRaidInfo(){
+        var raidNotCompleteCountSpan = document.querySelector('#raid-not-complete-count-span')
+        var raidCompleteCountSpan = document.querySelector('#raid-complete-count-span')
+
+        var filterSetting = localStorage.filtered === 'true' ? true : false
+        
+        var raidNotCompleteCount = this.data.raids.filter(raid=>{
+            
+            var _isComplete = raid.time!=="완료"
+            var _isMyCharacter = filterSetting ? raid.checkedMember.some(e=>this.myCharacter.includes(e)) : true
+            return _isComplete && _isMyCharacter
+
+        }).length
+
+        var raidCompleteCount = this.data.raids.filter(raid=>{
+            
+            var _isComplete = raid.time==="완료"
+            var _isMyCharacter = filterSetting ? raid.checkedMember.some(e=>this.myCharacter.includes(e)) : true
+            return _isComplete && _isMyCharacter
+
+        }).length
+
+        raidNotCompleteCountSpan.textContent = raidNotCompleteCount
+        raidCompleteCountSpan.textContent = raidCompleteCount
+
+        window.myChart.data.datasets[0].data = [raidCompleteCount,raidNotCompleteCount]
+        document.querySelector('#raid-progress-value-span').childNodes[0].textContent = Math.floor(raidCompleteCount/(raidNotCompleteCount+raidCompleteCount)*100)
+        window.myChart.update()
+
+
     }
 
     changeUser(username){
@@ -336,7 +375,6 @@ class Raid {
             raidMemberList.classList.add("raid-member-list")
 
             var minmax = getMinMaxIlv(raidinfo.checkedMember)
-            console.log(minmax,raidinfo.checkedMember)
 
             raidinfo.checkedMember.forEach((raidMember, raidMemberIdx)=>{
                 var raidMemberSimpleContainer = document.createElement('div')
@@ -419,6 +457,22 @@ class Raid {
                     if (_confirm) {
                         // TODO post로 레이드 이름, 시간을 보내 시간을 완료로 변경
                         alert('완료')
+                        fetch('https://script.google.com/macros/s/AKfycbxz8bm2b9BrHUGi3GrgPMdF1kP6cXqjeofI2Q1MWQPNJ-5zs7phHS1c5IGsTFORBHJ6/exec',
+                        {
+                            method:'POST',
+                            mode:'no-cors',
+                            headers: {
+                                'content-type': 'text/plain;charset=utf-8'
+                            },
+                            body:JSON.stringify({
+                                raidName:raidinfo.name,
+                                beforeTime:raidinfo.time
+                            })
+                        })
+                        .then(res=>res.json())
+                        .then(json=>{console.log(json)})
+                        .catch(err=>{console.log(err)})
+
                     }
                 })
                 completeButtonContainer.append(completeIcon, completeBtnSpan)
@@ -433,7 +487,6 @@ class Raid {
 
 
             this.raidNode.append(raidContainer)
-            console.log(myRaidCharacter, raidContainer)
         })
     }
 
@@ -454,14 +507,14 @@ function raidInit() {
             window.$raid = new Raid()
             window.$raid.init(json)
 
-            console.log($raid)
         })
         .finally(() => {
             window.progressBar.off()
         })
         .catch(err => {
             console.error(err)
-            alert('데이터를 불러오는데 실패했습니다. 잠시 후 다시 시도해주세요.')
+            alert('데이터를 불러오는데 실패했습니다. 다시 로드합니다.')
+            window.location.reload()
         })
 }
 

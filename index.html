@@ -2,8 +2,8 @@
 <html lang="ko-KR">
 
 <head>
-  <!-- <base href="https://dneifiend.github.io/LatBaHol/"> -->
-  <base href="https://127.0.0.1:8080/">
+  <base href="https://dneifiend.github.io/LatBaHol/">
+  <!-- <base href="https://127.0.0.1:8080/"> -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -83,16 +83,16 @@
     <section class="raid-info-container">
       <div id="raid-not-complete-count">
         <span>잔여 레이드</span>
-        <span class="big">7</span>
+        <span id="raid-not-complete-count-span" class="big"></span>
       </div>
       <div id="raid-complete-count">
         <span>완료 레이드</span>
-        <span class="big">12</span>
+        <span id="raid-complete-count-span" class="big"></span>
       </div>
       <div id="raid-progress">
         <canvas id="myChart" width="75" height="75"></canvas>
         <!-- <span class="raid-progress-subtitle">완료율</span> -->
-        <span class="raid-progress-value text-medium">63<i class="material-icons"
+        <span id="raid-progress-value-span" class="raid-progress-value text-medium hidden">진행도<i class="material-icons"
             style="font-size: 1rem;">percent</i></span>
       </div>
     </section>

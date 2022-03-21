@@ -1,6 +1,6 @@
 document.addEventListener('readystatechange', e => {
     if(e.target.readyState === 'complete' ){
-        charInit()
+        charInit(7,5)
         mdcinit()
     }
 })
@@ -10,7 +10,7 @@ function charInit(){
     var data = {
         datasets: [{
     
-            data: [12, 7],
+            data: [0, 0],
             backgroundColor: [
                 "#1EB980",
                 "#045d56"
@@ -41,7 +41,7 @@ function charInit(){
     
     };
     
-    var myChart = new Chart(
+    window.myChart = new Chart(
         document.getElementById('myChart'),
         config
     );

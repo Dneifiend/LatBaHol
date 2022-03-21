@@ -469,9 +469,11 @@ class Raid {
                                 beforeTime:raidinfo.time
                             })
                         })
-                        .then(res=>res.json())
-                        .then(json=>{console.log(json)})
+                        .then(res=>{
+                            window.location.reload()
+                        })
                         .catch(err=>{console.log(err)})
+                        
 
                     }
                 })

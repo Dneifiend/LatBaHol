@@ -355,9 +355,17 @@ main.loading{
     color:var(--grey);
     font-size: 0.9rem;
 }
+.raid-member-simple .char-name::before{
+    content: " (";
+    color:var(--grey);
+}
+.raid-member-simple .char-name::after{
+    content: ")";
+    color:var(--grey);
+}
 
-.raid-member-simple.me .user-name{
-    /* color:var(--primary-hightlight);     */
+.raid-member-simple.me .char-name {
+    color: #1EB980;
 }
 
 .raid-member-list {

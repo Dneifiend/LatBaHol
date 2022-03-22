@@ -395,7 +395,7 @@ class Raid {
                 var charNameSpan = document.createElement('span')
                 charNameSpan.classList.add('char-name')
                 userNameSpan.textContent = this.data.members[raidMember]?.userName
-                charNameSpan.textContent = `(${raidMember})`
+                charNameSpan.textContent = `${raidMember}`
                 raidMemberDiv.append(userNameSpan,charNameSpan)
 
                 // 캐릭터 뱃지 컨테이너

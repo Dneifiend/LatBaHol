@@ -417,7 +417,7 @@ class Raid {
                 classJobSpan.textContent = this.data.shortName[jobName]
                 if(this.data.supports.includes(jobName)){
                     classJobSpan.classList.add('heal')
-                    classJobSpan.textContent+='❤'
+                    classJobSpan.textContent+='♥'
                 } 
                 charBadgeContainer.append(classJobSpan)
 

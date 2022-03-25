@@ -316,7 +316,8 @@ main.loading{
 .complete-button-container.disabled {
     box-shadow: inset 0 0.4rem 0px var(--deep-dark-grey);
     background-color: var(--dark-grey);
-    color:var(--grey)
+    color:var(--grey);
+    cursor: not-allowed;
 }
 
 

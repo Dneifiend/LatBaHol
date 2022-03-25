@@ -41,7 +41,7 @@ let scrollEventHandler = {
     },
     handler: function (opacity) {
         this.changeOpacity(opacity)
-        return wait(this.maxTime / 5)
+        return w8(this.maxTime / 5)
     },
 
     el: [],
@@ -61,7 +61,7 @@ let scrollEventHandler = {
                 this.que = setTimeout(() => {
                     if (this.state === "down") {
 
-                        wait(0)
+                        w8(0)
                             .then(_ => this.handler(0.5))
                             .then(_ => this.handler(0.4))
                             .then(_ => this.handler(0.3))
@@ -79,7 +79,7 @@ let scrollEventHandler = {
                     this.doingFlag = true
 
                     if (this.state === "stand") {
-                        wait(0)
+                        w8(0)
                             .then(_ => this.handler(0.1))
                             .then(_ => this.handler(0.2))
                             .then(_ => this.handler(0.3))
@@ -98,7 +98,7 @@ let scrollEventHandler = {
 
 
 
-function wait(time) {
+function w8(time) {
     return new Promise(r => {
         setTimeout(() => {
             r()
